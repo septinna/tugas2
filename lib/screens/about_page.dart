@@ -54,41 +54,54 @@ class AboutPage extends StatelessWidget {
                     crossAxisSpacing: 15,
                     mainAxisSpacing: 15,
                     physics: NeverScrollableScrollPhysics(),
+                    childAspectRatio: 1.2,
                     children: List.generate(4, (index) {
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.asset(
-                                teamImages[index],
-                                fit: BoxFit.cover,
-                                height: 150,
-                                width: double.infinity,
+                      return Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black26),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                flex: 2,
+                                child: AspectRatio(
+                                  aspectRatio: 1,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      image: DecorationImage(
+                                        image: AssetImage(teamImages[index]),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                          SizedBox(width: 10),
-                          Expanded(
-                            flex: 2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "TEAM MEMBER ${index + 1}",
-                                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                              SizedBox(width: 15),
+                              Expanded(
+                                flex: 1,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "TEAM MEMBER ${index + 1}",
+                                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Text(
+                                      "Position ${index + 1}",
+                                      style: TextStyle(fontSize: 10, fontStyle: FontStyle.italic),
+                                    ),
+                                  ],
                                 ),
-                                SizedBox(height: 5),
-                                Text(
-                                  "Position ${index + 1}",
-                                  style: TextStyle(fontSize: 8, fontStyle: FontStyle.italic),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       );
                     }),
                   ),
