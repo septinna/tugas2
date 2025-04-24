@@ -138,44 +138,63 @@ class _NewsPageState extends State<NewsPage> {
                     children: List.generate(images.length, (index) => _buildIndicator(index)),
                   ),
                   SizedBox(height: 30),
-                  GridView.count(
-                    crossAxisCount: 2,
+                  GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 15,
+                      mainAxisSpacing: 15,
+                      childAspectRatio: 0.8,
+                    ),
                     shrinkWrap: true,
-                    crossAxisSpacing: 15,
-                    mainAxisSpacing: 15,
-                    childAspectRatio: 1.2,
                     physics: NeverScrollableScrollPhysics(),
-                    children: List.generate(4, (index) {
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
                       return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8),
-                              child: Image.asset(
-                                cardImages[index],
-                                fit: BoxFit.cover,
-                                width: double.infinity,
+                            flex: 3,
+                            child: AspectRatio(
+                              aspectRatio: 1,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: Image.asset(
+                                  cardImages[index],
+                                  fit: BoxFit.cover,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                ),
                               ),
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 15),
                           Text(
                             "Lorem ipsum dolor sit amet...",
-                            style: TextStyle(fontSize: 12),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                            ),
                           ),
                           SizedBox(height: 10),
                           ElevatedButton(
                             onPressed: () {},
-                            child: Text("MORE"),
                             style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                              minimumSize: Size(80, 30),
+                              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                              minimumSize: Size(100, 40),
+                            ),
+                            child: Text(
+                              "MORE",
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ],
                       );
-                    }),
+                    },
                   ),
                   SizedBox(height: 30),
                   Center(
